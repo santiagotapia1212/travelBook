@@ -1,0 +1,458 @@
+/* ============================================
+   auth.css — Estilos de login y registro
+   Travel Book
+   ============================================ */
+
+/* ── NAVBAR override ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,247,242,0.95);
+}
+
+/* ── LAYOUT DE DOS COLUMNAS ── */
+.auth-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 64px);
+}
+
+/* ── PANEL IZQUIERDO (decorativo) ── */
+.auth-aside {
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Textura decorativa sutil */
+.auth-aside::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(212,98,42,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(107,79,53,0.25) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Patrón de puntos decorativos */
+.auth-aside::after {
+  content: '';
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  width: 120px;
+  height: 120px;
+  background-image: radial-gradient(circle, rgba(250,247,242,0.12) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.aside-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 360px;
+}
+
+.aside-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.aside-tag::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.aside-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.aside-title em {
+  font-style: italic;
+  color: var(--warm);
+}
+
+.aside-desc {
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(250,247,242,0.6);
+  margin-bottom: 2rem;
+}
+
+.aside-quotes {
+  margin-bottom: 2rem;
+}
+
+.aside-quotes blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(250,247,242,0.5);
+  line-height: 1.6;
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.aside-quotes cite {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: rgba(250,247,242,0.35);
+  margin-left: 1rem;
+}
+
+/* Lista de beneficios (registro) */
+.aside-benefits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.aside-benefits li {
+  font-size: 0.875rem;
+  color: rgba(250,247,242,0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Dots decorativos */
+.aside-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.aside-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(250,247,242,0.2);
+}
+
+.aside-dots span:first-child { background: var(--accent); }
+
+/* ── PANEL DERECHO (formulario) ── */
+.auth-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  overflow-y: auto;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ── ENCABEZADO ── */
+.auth-header { margin-bottom: 2rem; }
+
+.page-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.page-tag::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.page-title em { font-style: italic; color: var(--brown); }
+
+/* ── BANNERS ── */
+.success-banner {
+  display: none;
+  background: #edf7f0;
+  border: 1px solid #a8d5b5;
+  border-radius: 10px;
+  padding: 0.875rem 1.1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--success);
+  align-items: center;
+  gap: 0.5rem;
+}
+.success-banner.visible { display: flex; }
+
+.error-banner {
+  display: none;
+  background: #fdf0ef;
+  border: 1px solid #e8aaaa;
+  border-radius: 10px;
+  padding: 0.875rem 1.1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--error);
+  align-items: center;
+  gap: 0.5rem;
+}
+.error-banner.visible { display: flex; }
+
+/* ── FORMULARIO ── */
+form { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.form-grid-auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+.label-opt {
+  font-weight: 300;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.required::after { content: ' *'; color: var(--accent); }
+
+.input-wrap { position: relative; }
+
+.input-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  pointer-events: none;
+  line-height: 1;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--cream);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  appearance: none;
+}
+
+.input-wrap input { padding-left: 2.25rem; }
+
+input:focus, textarea:focus {
+  border-color: var(--warm);
+  box-shadow: 0 0 0 3px rgba(200,168,130,0.18);
+}
+
+input.error, textarea.error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+}
+
+.field-error { font-size: 0.75rem; color: var(--error); display: none; }
+.field-error.visible { display: block; }
+
+textarea { resize: vertical; min-height: 70px; line-height: 1.6; }
+
+/* Botón mostrar contraseña */
+.toggle-pass {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 0;
+  line-height: 1;
+}
+.toggle-pass:hover { opacity: 1; }
+
+/* ── FUERZA DE CONTRASEÑA ── */
+.strength-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+
+.strength-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 2px;
+  transition: width 0.3s, background 0.3s;
+}
+
+.strength-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* ── TOGGLE SWITCH (reutilizado de nuevo-viaje.css) ── */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.1rem;
+  background: var(--sand);
+  border-radius: 10px;
+}
+
+.toggle-info p   { font-size: 0.875rem; font-weight: 500; color: var(--ink); }
+.toggle-info small { font-size: 0.78rem; color: var(--muted); }
+
+.toggle {
+  position: relative;
+  width: 46px; height: 26px;
+  flex-shrink: 0;
+}
+
+.toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: #ddd;
+  border-radius: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle input:checked + .toggle-track { background: var(--accent); }
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  pointer-events: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.toggle input:checked ~ .toggle-thumb { transform: translateX(20px); }
+
+/* ── BOTÓN SUBMIT ── */
+.btn-submit {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.95rem 2rem;
+  border-radius: 2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.btn-submit:hover {
+  background: var(--brown);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26,22,18,0.2);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── PIE DEL FORMULARIO ── */
+.auth-footer {
+  margin-top: 1.75rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.auth-footer a {
+  color: var(--brown);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.auth-footer a:hover { color: var(--accent); border-color: var(--warm); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-aside { display: none; }
+
+  .auth-main {
+    padding: 2rem 1.25rem 3rem;
+    align-items: flex-start;
+  }
+
+  .auth-card { max-width: 100%; }
+
+  .form-grid-auth { grid-template-columns: 1fr; }
+
+  .page-title { font-size: 2rem; }
+}

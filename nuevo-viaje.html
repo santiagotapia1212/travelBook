@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuevo Viaje — Travel Book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/nuevo-viaje.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo"><span></span> Travel Book</a>
+    <a href="index.html" class="nav-back">← Volver al inicio</a>
+  </nav>
+
+  <div class="page">
+
+    <!-- Encabezado -->
+    <div class="page-header">
+      <div class="page-tag">Nuevo registro</div>
+      <h1 class="page-title">Cuéntanos tu<br><em>aventura</em></h1>
+    </div>
+
+    <!-- Banner de éxito -->
+    <div class="success-banner" id="successBanner">
+      ✅ &nbsp; ¡Viaje publicado con éxito! Redirigiendo al inicio...
+    </div>
+
+    <!-- FORMULARIO -->
+    <form class="form-card" id="tripForm" novalidate>
+
+      <!-- Upload de fotos -->
+      <label class="upload-zone" for="fotoInput">
+        <div class="upload-icon">📷</div>
+        <span class="upload-label">Arrastra tus fotos aquí</span>
+        <span class="upload-hint">o haz clic para seleccionar — <strong>JPG, PNG, WEBP</strong> — máx. 10 MB</span>
+        <input type="file" id="fotoInput" accept="image/*" multiple />
+      </label>
+
+      <div class="preview-grid" id="previewGrid"></div>
+
+      <!-- Cuerpo del formulario -->
+      <div class="form-body">
+
+        <div class="section-sep">Información del viaje</div>
+
+        <div class="form-grid">
+
+          <div class="form-group full">
+            <label class="required" for="titulo">Título del viaje</label>
+            <input type="text" id="titulo" name="titulo" placeholder="Ej: Una semana en Dubai" maxlength="120" />
+            <span class="field-error" id="titulo-error">Este campo es obligatorio</span>
+          </div>
+
+          <div class="form-group">
+            <label class="required" for="ciudad">Ciudad / Lugar</label>
+            <div class="input-wrap">
+              <span class="input-icon">📍</span>
+              <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad o región" />
+            </div>
+            <span class="field-error" id="ciudad-error">Este campo es obligatorio</span>
+          </div>
+
+          <div class="form-group">
+            <label class="required" for="pais">País</label>
+            <div class="input-wrap">
+              <span class="input-icon">🌐</span>
+              <input type="text" id="pais" name="pais" placeholder="País" />
+            </div>
+            <span class="field-error" id="pais-error">Este campo es obligatorio</span>
+          </div>
+
+          <div class="form-group">
+            <label class="required" for="fechaInicio">Fecha de inicio</label>
+            <div class="input-wrap">
+              <span class="input-icon">📅</span>
+              <input type="date" id="fechaInicio" name="fechaInicio" />
+            </div>
+            <span class="field-error" id="fechaInicio-error">Selecciona una fecha</span>
+          </div>
+
+          <div class="form-group">
+            <label for="fechaFin">Fecha de regreso</label>
+            <div class="input-wrap">
+              <span class="input-icon">🏠</span>
+              <input type="date" id="fechaFin" name="fechaFin" />
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label class="required" for="descripcion">Descripción</label>
+            <textarea id="descripcion" name="descripcion"
+              placeholder="Cuéntanos sobre tu experiencia, qué fue lo que más te gustó, qué recomendarías..."
+              maxlength="600"></textarea>
+            <span class="field-error" id="descripcion-error">Escribe al menos 20 caracteres</span>
+          </div>
+
+        </div>
+
+        <div class="section-sep">Lugar destacado (opcional)</div>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="lugarNombre">Nombre del lugar</label>
+            <input type="text" id="lugarNombre" name="lugarNombre" placeholder="Ej: Burj Khalifa" />
+          </div>
+
+          <div class="form-group">
+            <label for="categoria">Categoría</label>
+            <div class="input-wrap">
+              <span class="input-icon">🏷️</span>
+              <select id="categoria" name="categoria">
+                <option value="">Selecciona una categoría</option>
+                <option value="restaurante">🍽️ Restaurante</option>
+                <option value="hotel">🏨 Hotel</option>
+                <option value="atraccion">🎡 Atracción turística</option>
+                <option value="playa">🏖️ Playa</option>
+                <option value="museo">🏛️ Museo</option>
+                <option value="otro">📌 Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label>Calificación</label>
+            <div class="stars-group" id="starsGroup">
+              <span class="star-label" data-val="1">★</span>
+              <span class="star-label" data-val="2">★</span>
+              <span class="star-label" data-val="3">★</span>
+              <span class="star-label" data-val="4">★</span>
+              <span class="star-label" data-val="5">★</span>
+              <input type="hidden" id="calificacion" name="calificacion" value="0" />
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label for="comentarioLugar">Comentario del lugar</label>
+            <textarea id="comentarioLugar" name="comentarioLugar"
+              placeholder="¿Qué te pareció este lugar? ¿Lo recomendarías?" rows="3" maxlength="300"></textarea>
+          </div>
+
+        </div>
+
+        <!-- Toggle visibilidad -->
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <p>Publicar en el feed</p>
+            <small>Otros usuarios podrán ver este viaje en la página de inicio</small>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="esPublico" name="esPublico" checked />
+            <div class="toggle-track"></div>
+            <div class="toggle-thumb"></div>
+          </label>
+        </div>
+
+      </div>
+
+      <!-- Footer del formulario -->
+      <div class="form-footer">
+        <p class="form-footer-hint">Los campos con <strong>*</strong> son obligatorios</p>
+        <button type="submit" class="btn-submit" id="submitBtn">
+          ✈️ Publicar viaje
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    // ── Preview de fotos ──
+    const fotoInput = document.getElementById('fotoInput')
+    const previewGrid = document.getElementById('previewGrid')
+
+    fotoInput.addEventListener('change', () => {
+      previewGrid.innerHTML = ''
+      const files = Array.from(fotoInput.files)
+      if (!files.length) { previewGrid.classList.remove('visible'); return }
+      previewGrid.classList.add('visible')
+      files.forEach(file => {
+        const reader = new FileReader()
+        reader.onload = e => {
+          const item = document.createElement('div')
+          item.className = 'preview-item'
+          item.innerHTML = `<img src="${e.target.result}" /><button class="preview-remove" type="button">✕</button>`
+          item.querySelector('.preview-remove').onclick = () => {
+            item.remove()
+            if (!previewGrid.children.length) previewGrid.classList.remove('visible')
+          }
+          previewGrid.appendChild(item)
+        }
+        reader.readAsDataURL(file)
+      })
+    })
+
+    // ── Rating stars ──
+    let rating = 0
+    const stars = document.querySelectorAll('.star-label')
+    const ratingInput = document.getElementById('calificacion')
+
+    stars.forEach(star => {
+      star.addEventListener('mouseover', () => {
+        stars.forEach(s => s.classList.toggle('active', s.dataset.val <= star.dataset.val))
+      })
+      star.addEventListener('mouseout', () => {
+        stars.forEach(s => s.classList.toggle('active', s.dataset.val <= rating))
+      })
+      star.addEventListener('click', () => {
+        rating = parseInt(star.dataset.val)
+        ratingInput.value = rating
+        stars.forEach(s => s.classList.toggle('active', s.dataset.val <= rating))
+      })
+    })
+
+    // ── Validación ──
+    function validate() {
+      let ok = true
+      const campos = [
+        { id: 'titulo', min: 2 },
+        { id: 'ciudad', min: 1 },
+        { id: 'pais', min: 1 },
+        { id: 'fechaInicio', min: 1 },
+        { id: 'descripcion', min: 20 },
+      ]
+      campos.forEach(({ id, min }) => {
+        const el = document.getElementById(id)
+        const err = document.getElementById(id + '-error')
+        const bad = !el.value || el.value.trim().length < min
+        el.classList.toggle('error', bad)
+        err.classList.toggle('visible', bad)
+        if (bad) ok = false
+      })
+      return ok
+    }
+
+    // ── Submit ──
+    document.getElementById('tripForm').addEventListener('submit', e => {
+      e.preventDefault()
+      if (!validate()) return
+      const btn = document.getElementById('submitBtn')
+      btn.disabled = true
+      btn.textContent = 'Publicando...'
+      setTimeout(() => {
+        document.getElementById('successBanner').classList.add('visible')
+        btn.textContent = '✅ Publicado'
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        setTimeout(() => { window.location.href = 'index.html' }, 2000)
+      }, 1200)
+    })
+  </script>
+
+</body>
+
+</html>
